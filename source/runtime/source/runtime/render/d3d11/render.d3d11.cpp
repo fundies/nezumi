@@ -77,8 +77,7 @@ namespace nezumi
             &g_d3d11_swap_chain,
             &g_d3d11_device,
             nullptr,
-            &g_d3d11_context
-        )))
+            &g_d3d11_context)))
         {
             // TODO: Display Error Dialog
             return false;
