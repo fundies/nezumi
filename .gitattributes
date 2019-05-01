@@ -1,0 +1,8 @@
+# Mark directories for linguist on GitHub.
+vendor/*            linguist-vendored
+documentation/*     linguist-documentation
+
+# Automatically normalize line endings for text files.
+*                   text=auto
+*.png               binary
+*.ico               binary
