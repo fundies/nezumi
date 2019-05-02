@@ -18,10 +18,10 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
+#include <runtime/system.hpp>
+
 #include <cstdlib>
 #include <cstdio>
-
-#include <runtime/system.hpp>
 
 namespace nezumi
 {

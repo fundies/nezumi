@@ -18,10 +18,10 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include <cstring>
-
 #include <runtime/window.hpp>
 #include <runtime/window/window.internal.hpp>
+
+#include <cstring>
 
 namespace nezumi
 {

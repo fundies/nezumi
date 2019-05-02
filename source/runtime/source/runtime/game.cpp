@@ -18,8 +18,6 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include <cstdlib>
-
 #include <runtime/game.hpp>
 #include <runtime/window.hpp>
 #include <runtime/render.hpp>
@@ -28,6 +26,8 @@
 #include <runtime/window/window.internal.hpp>
 #include <runtime/render/render.internal.hpp>
 #include <runtime/timer/timer.internal.hpp>
+
+#include <cstdlib>
 
 namespace nezumi
 {

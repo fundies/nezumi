@@ -18,9 +18,6 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include <cstdlib>
-#include <cstdio>
-
 #include <runtime/game.hpp>
 #include <runtime/system.hpp>
 #include <runtime/window.hpp>
@@ -28,6 +25,9 @@
 #include <runtime/timer.hpp>
 #include <runtime/math.hpp>
 #include <runtime/color.hpp>
+
+#include <cstdlib>
+#include <cstdio>
 
 using namespace nezumi;
 
