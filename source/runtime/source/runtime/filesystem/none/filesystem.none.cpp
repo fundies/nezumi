@@ -18,53 +18,32 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include <runtime/game.hpp>
-#include <runtime/system.hpp>
-#include <runtime/window.hpp>
-#include <runtime/render.hpp>
 #include <runtime/filesystem.hpp>
-#include <runtime/timer.hpp>
-#include <runtime/math.hpp>
-#include <runtime/color.hpp>
 
-#include <cstdlib>
-#include <cstdio>
-
-using namespace nezumi;
-
-static void sample_init()
+namespace nezumi
 {
-}
-
-static void sample_exit()
-{
-}
-
-static void sample_step()
-{
-    // Input Test
-    if (keyboard_check_pressed(vk_any))
-        std::puts("Key!");
-
-    // Exit Game
-    if (keyboard_check(vk_escape))
-        game_end();
-}
-
-static void sample_draw()
-{
-    draw_clear(color_from_rgb(100, 149, 237), 1.0f);
-}
-
-int main(int argc, char** argv)
-{
-    temp_callbacks callbacks
+    bool file_delete(const char* path)
     {
-        sample_init,
-        sample_exit,
-        sample_step,
-        sample_draw,
-    };
+        return false;
+    }
 
-    return game_main(argc, argv, callbacks);
+    bool file_exists(const char* path)
+    {
+        return false;
+    }
+
+    bool directory_create(const char* path)
+    {
+        return false;
+    }
+
+    bool directory_delete(const char* path)
+    {
+        return false;
+    }
+
+    bool directory_exists(const char* path)
+    {
+        return false;
+    }
 }
