@@ -89,14 +89,37 @@ namespace nezumi
                 return 0;
             }
 
-            // A key was pressed or released.
+            // A key was pressed.
             case WM_KEYDOWN:
+            {
+                int key = translate_key(wp);
+
+                if ((lp & (1 << 30)) == 0)
+                {
+                    // Set Key State
+                    if (key != vk_none)
+                        g_keyboard_current[key] = true;
+
+                    // Set Any State
+                    g_keyboard_any_down = true;
+                    g_keyboard_any_pressed = true;
+                }
+
+                return 0;
+            }
+
+            // A key was released.
             case WM_KEYUP:
             {
                 int key = translate_key(wp);
 
+                // Reset Key State
                 if (key != vk_none)
-                    g_keyboard_current[key] = (msg == WM_KEYDOWN);
+                    g_keyboard_current[key] = false;
+
+                // Reset Any State
+                g_keyboard_any_down = false;
+                g_keyboard_any_released = true;
 
                 return 0;
             }
@@ -106,6 +129,8 @@ namespace nezumi
             {
                 // Set State
                 g_mouse_current[mb_left] = true;
+                g_mouse_any_down = true;
+                g_mouse_any_pressed = true;
 
                 // Set Capture
                 SetCapture(reinterpret_cast<HWND>(g_window_handle));
@@ -118,10 +143,15 @@ namespace nezumi
             {
                 // Reset State
                 g_mouse_current[mb_left] = false;
+                g_mouse_any_released = true;
 
                 // Reset Capture
                 if ((wp & (MK_RBUTTON | MK_MBUTTON)) == 0)
+                {
+                    g_mouse_any_down = false;
+
                     ReleaseCapture();
+                }
 
                 return 0;
             }
@@ -131,6 +161,8 @@ namespace nezumi
             {
                 // Set State
                 g_mouse_current[mb_right] = true;
+                g_mouse_any_down = true;
+                g_mouse_any_pressed = true;
 
                 // Set Capture
                 SetCapture(reinterpret_cast<HWND>(g_window_handle));
@@ -143,10 +175,15 @@ namespace nezumi
             {
                 // Reset State
                 g_mouse_current[mb_right] = false;
+                g_mouse_any_released = true;
 
                 // Reset Capture
                 if ((wp & (MK_LBUTTON | MK_MBUTTON)) == 0)
+                {
+                    g_mouse_any_down = false;
+
                     ReleaseCapture();
+                }
 
                 return 0;
             }
@@ -156,6 +193,8 @@ namespace nezumi
             {
                 // Set State
                 g_mouse_current[mb_middle] = true;
+                g_mouse_any_down = true;
+                g_mouse_any_pressed = true;
 
                 // Set Capture
                 SetCapture(reinterpret_cast<HWND>(g_window_handle));
@@ -168,10 +207,15 @@ namespace nezumi
             {
                 // Reset State
                 g_mouse_current[mb_middle] = false;
+                g_mouse_any_released = true;
 
                 // Reset Capture
                 if ((wp & (MK_LBUTTON | MK_RBUTTON)) == 0)
+                {
+                    g_mouse_any_down = false;
+
                     ReleaseCapture();
+                }
 
                 return 0;
             }

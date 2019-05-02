@@ -28,7 +28,8 @@ namespace nezumi
      */
     enum
     {
-        // TODO: Implement "vk_any".
+        /** Represents any defined key. */
+        vk_any = -2,
 
         /** Represents an undefined key. */
         vk_none = -1,
@@ -60,7 +61,8 @@ namespace nezumi
      */
     enum
     {
-        // TODO: Implement "mb_any".
+        /** Represents any defined key. */
+        mb_any = -2,
 
         /** Represents an undefined mouse button. */
         mb_none = -1,

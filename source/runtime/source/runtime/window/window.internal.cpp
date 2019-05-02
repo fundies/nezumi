@@ -34,11 +34,19 @@ namespace nezumi
     bool    g_window_fullscreen;
     bool    g_window_focus;
 
+    // Keyboard State
     bool    g_keyboard_current[vk_last];
     bool    g_keyboard_previous[vk_last];
+    bool    g_keyboard_any_down;
+    bool    g_keyboard_any_pressed;
+    bool    g_keyboard_any_released;
 
+    // Mouse State
     bool    g_mouse_current[mb_last];
     bool    g_mouse_previous[mb_last];
+    bool    g_mouse_any_down;
+    bool    g_mouse_any_pressed;
+    bool    g_mouse_any_released;
     int     g_mouse_x;
     int     g_mouse_y;
 
@@ -47,8 +55,14 @@ namespace nezumi
         // Update Keyboard State
         std::memcpy(g_keyboard_previous, g_keyboard_current, vk_last * sizeof(bool));
 
+        g_keyboard_any_pressed = false;
+        g_keyboard_any_released = false;
+
         // Update Mouse State
         std::memcpy(g_mouse_previous, g_mouse_current, mb_last * sizeof(bool));
+
+        g_mouse_any_pressed = false;
+        g_mouse_any_released = false;
     }
 
     void* window_get_handle()
@@ -93,48 +107,48 @@ namespace nezumi
 
     bool keyboard_check(int key)
     {
-        if (key < 0 || key >= vk_last)
-            return false;
+        if (key == vk_any) return g_keyboard_any_down;
+        if (key < 0 || key >= vk_last) return false;
 
         return g_keyboard_current[key];
     }
 
     bool keyboard_check_pressed(int key)
     {
-        if (key < 0 || key >= vk_last)
-            return false;
+        if (key == vk_any) return g_keyboard_any_pressed;
+        if (key < 0 || key >= vk_last) return false;
 
         return g_keyboard_current[key] && !g_keyboard_previous[key];
     }
 
     bool keyboard_check_released(int key)
     {
-        if (key < 0 || key >= vk_last)
-            return false;
+        if (key == vk_any) return g_keyboard_any_released;
+        if (key < 0 || key >= vk_last) return false;
 
         return !g_keyboard_current[key] && g_keyboard_previous[key];
     }
 
     bool mouse_check(int button)
     {
-        if (button < 0 || button >= mb_last)
-            return false;
+        if (button == mb_any) return g_mouse_any_down;
+        if (button < 0 || button >= mb_last) return false;
 
         return g_mouse_current[button];
     }
 
     bool mouse_check_pressed(int button)
     {
-        if (button < 0 || button >= mb_last)
-            return false;
+        if (button == mb_any) return g_mouse_any_pressed;
+        if (button < 0 || button >= mb_last) return false;
 
         return g_mouse_current[button] && !g_mouse_previous[button];
     }
 
     bool mouse_check_released(int button)
     {
-        if (button < 0 || button >= mb_last)
-            return false;
+        if (button == mb_any) return g_mouse_any_released;
+        if (button < 0 || button >= mb_last) return false;
 
         return !g_mouse_current[button] && g_mouse_previous[button];
     }

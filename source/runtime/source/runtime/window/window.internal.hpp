@@ -53,11 +53,29 @@ namespace nezumi
     /** The keyboard state for the previous frame. */
     extern bool g_keyboard_previous[];
 
+    /** Whether any key is currently down. */
+    extern bool g_keyboard_any_down;
+
+    /** Whether any key was pressed within the last frame. */
+    extern bool g_keyboard_any_pressed;
+
+    /** Whether any key was released within the last frame. */
+    extern bool g_keyboard_any_released;
+
     /** The mouse state for the current frame. */
     extern bool g_mouse_current[];
 
     /** The mouse state for the previous frame. */
     extern bool g_mouse_previous[];
+
+    /** Whether any mouse button is currently down. */
+    extern bool g_mouse_any_down;
+
+    /** Whether any mouse button was pressed within the last frame. */
+    extern bool g_mouse_any_pressed;
+
+    /** Whether any mouse button was released within the last frame. */
+    extern bool g_mouse_any_released;
 
     /**
      * Initializes the window module.

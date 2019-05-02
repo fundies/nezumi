@@ -42,8 +42,8 @@ static void sample_exit()
 static void sample_step()
 {
     // Input Test
-    if (keyboard_check(vk_enter))
-        std::printf("%d, %d\n", g_mouse_x, g_mouse_y);
+    if (keyboard_check_pressed(vk_any))
+        std::puts("Key!");
 
     // Exit Game
     if (keyboard_check(vk_escape))
