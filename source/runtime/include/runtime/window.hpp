@@ -61,7 +61,7 @@ namespace nezumi
      */
     enum
     {
-        /** Represents any defined key. */
+        /** Represents any defined mouse button. */
         mb_any = -2,
 
         /** Represents an undefined mouse button. */
