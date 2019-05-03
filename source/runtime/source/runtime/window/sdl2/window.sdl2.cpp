@@ -280,7 +280,7 @@ namespace nezumi
 
     bool window_init(const char* title, int width, int height) 
     {
-        SDL_Init(SDL_INIT_VIDEO);
+        SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS);
         g_window_handle = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, window_flags);
        
         return (g_window_handle != nullptr);
