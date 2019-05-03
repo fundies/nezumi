@@ -50,6 +50,11 @@ namespace nezumi
         return vk_none;
     }
 
+    void* get_window_handle()
+    {
+        return g_window_handle;
+    }
+
     // The main window procedure callback.
     static LRESULT CALLBACK window_procedure(HWND wnd, UINT msg, WPARAM wp, LPARAM lp)
     {

@@ -23,6 +23,8 @@
 #include <runtime/math.hpp>
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_syswm.h>
+
 
 namespace nezumi
 {
@@ -101,6 +103,14 @@ namespace nezumi
             case SDL_BUTTON_X2:       return mb_x2;*/
             default:                  return -1;
         }
+    }
+
+    extern void* get_window_handle()
+    {
+        SDL_SysWMinfo wmInfo;
+        SDL_VERSION(&wmInfo.version);
+        SDL_GetWindowWMInfo(reinterpret_cast<SDL_Window*>(g_window_handle), &wmInfo);
+        return wmInfo.info.win.window;
     }
 
     static bool window_event(SDL_Event& event) 
@@ -264,6 +274,8 @@ namespace nezumi
                 default:                              break;
             }
         }
+
+        return true;
     }
 
     bool window_init(const char* title, int width, int height) 
@@ -271,7 +283,7 @@ namespace nezumi
         SDL_Init(SDL_INIT_VIDEO);
         g_window_handle = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, window_flags);
        
-        return (g_window_handle == nullptr);
+        return (g_window_handle != nullptr);
     }
 
     void window_set_title(const char* title)
