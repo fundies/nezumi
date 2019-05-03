@@ -392,7 +392,7 @@ namespace nezumi
         ShowWindow(reinterpret_cast<HWND>(g_window_handle), visible ? SW_SHOW : SW_HIDE);
     }
 
-    void window_set_fullscreen(bool fullscreen)
+    void window_set_fullscreen(bool fullscreen, bool borderless)
     {
         // TODO: Add Fullscreen Support
     }

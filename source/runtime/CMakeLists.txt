@@ -1,3 +1,8 @@
+include (ExternalProject)
+
+# Vendor includes
+include_directories("${CMAKE_BINARY_DIR}/vendor/include")
+
 # Set Runtime Options
 SET (RUNTIME_PARANOID_MODE ON CACHE BOOL "Enables various runtime error checks and assertions.")
 
@@ -29,6 +34,9 @@ IF (NEZUMI_PLATFORM_WINDOWS)
 
     # Windows - Window
     NEZUMI_MODULE_ENTRY (RUNTIME_MODULE_WINDOW "Win32" SOURCES "source/runtime/window/win32/window.win32.cpp")
+
+    # SDL2 - Window
+    NEZUMI_MODULE_ENTRY (RUNTIME_MODULE_WINDOW "SDL2" SOURCES "source/runtime/window/sdl2/window.sdl2.cpp" LIBRARIES "SDL2main;SDL2-static;imm32;version;winmm" EXTERNAL "SDL2" PROVIDES "SDL2main;SDL2-static")
 
     # Windows - Render
     NEZUMI_MODULE_ENTRY (RUNTIME_MODULE_RENDER "Direct3D 11" SOURCES "source/runtime/render/d3d11/render.d3d11.cpp" LIBRARIES "dxgi;d3d11")
