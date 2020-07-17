@@ -125,8 +125,9 @@ namespace nezumi
      * Sets whether the window is fullscreen.
      * 
      * @param fullscreen True if the window should be fullscreen; false otherwise.
+     * @param borderless True if the window should be borderless fullscreen; defaults to false.
      */
-    extern void window_set_fullscreen(bool fullscreen);
+    extern void window_set_fullscreen(bool fullscreen, bool borderless = false);
 
     /**
      * Gets the handle of the window.

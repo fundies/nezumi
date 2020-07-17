@@ -48,7 +48,7 @@ namespace nezumi
             { 1, 0 },
             DXGI_USAGE_RENDER_TARGET_OUTPUT,
             1,
-            reinterpret_cast<HWND>(g_window_handle),
+            reinterpret_cast<HWND>(get_window_handle()),
             true,   // TODO: Add Fullscreen Support
             DXGI_SWAP_EFFECT_DISCARD,
             0,

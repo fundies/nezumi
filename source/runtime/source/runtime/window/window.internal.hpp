@@ -26,6 +26,9 @@ namespace nezumi
     /** The handle of the window. */
     extern void* g_window_handle;
 
+    /** Function that guarantees raw window handler */
+    extern void* get_window_handle();
+
     /** The width of the window. */
     extern int g_window_width;
 
